@@ -32,6 +32,9 @@ SQLite Web Master is a full-featured database management system for sqlite3.
         they can be accessed directly from your browser.
 5. Open index.php in your browser to use it.
 
+##. License
+    SQLite Web Master is licensed under the Mozilla Public License Version 2.0 . (See LICENSE)
+
 ##. Other Licenses
 * Glyphicons Free Icons
     website: http://glyphicons.com/
