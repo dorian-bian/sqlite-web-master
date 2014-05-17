@@ -1,0 +1,7 @@
+dev
+opt
+tmp/*
+log/*
+ext/*
+var/*
+srv/*

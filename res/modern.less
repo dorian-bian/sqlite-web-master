@@ -1,0 +1,97 @@
+//----------------------------------------------------------------------
+@import 'main.less';
+
+html {
+    background-color: #E0E0E0;
+    background:url('bg.png');
+}
+
+input, textarea, select {
+    background-color: #F9F9F9;
+}
+
+button.btn, a.btn-submit {
+    .top-bottom-background(#F9F9F9, #EEEEEE);
+    color: #666;
+}
+
+button.btn:hover, a.btn-submit:hover {
+    border:solid 1px @base-color;
+    .top-bottom-background(#FCFCFC, #EEEEEE);
+    .box-shadow(0, 0, 5px, @base-color + #555);
+}
+
+#topbar {
+    span { color: #EEE; }
+    border-bottom-color: #CCC;
+    .box-shadow(0, 3px, 9px, #999);
+}
+
+#sidebar {
+    border: solid 1px #BBB;
+    .box-shadow(0, 3px, 3px, #999);
+}
+#main #tabs {
+    background-color: transparent;
+    margin-bottom: -1px;
+    li {
+        border: solid 1px #999;
+        border-bottom: 0 none;
+        background-color: #EEE;
+        
+        a { text-shadow: 1px 1px 1px #FFF; color:#111; }
+    }
+    li.active { 
+        background-color: #F5F5F5; 
+    }
+}
+#main #content {
+    background-color: #F5F5F5;
+    border: solid 1px #BBB;
+    .box-shadow(0, 3px, 3px, #999);
+}
+
+
+ul.sub-tabs li {
+    background-color: transparent;
+}
+
+table.item-list{
+    thead tr.item-list-header {
+        .top-bottom-background(#E9E9E9, #DCDCDC);
+    }
+}
+
+#footer {
+    color: #666;
+    a { color: #666; }
+    a:hover {
+        color: #AAA;
+    }
+    background-color: #E5E5E5;
+    border-bottom-color: #EEE;
+}
+
+.float-toolbar {
+    background-color: #666;
+}
+
+#main #content div.toolbar  {
+    background-color: #EEE;
+}
+
+div.console-panel div.footer td {
+    padding: 2px 8px;
+}
+
+div.panel{
+    border: solid 1px #BBB;
+    div.header {
+        color: #F6F6F6;
+        font-weight:bold;
+        background: none;
+        text-shadow: 0 0 0 transparent;
+        background-color: #333;
+    }
+    .box-shadow(0, 3px, 3px, #999);
+}

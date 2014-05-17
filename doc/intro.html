@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>SQLite Web Master Documentation</title>
+    <link rel="stylesheet" href="../res/modern.css" />
+    <link rel="stylesheet" href="res/style.css" />
+    <script type="text/javascript" src="../res/jquery.min.js"></script>
+</head>
+<body>
+<div id="topbar">
+    <span>SQLite Web Master Documentation</span>
+</div>
+<ol id="sidebar">
+    <li><a href="#instruction">1. Instruction</a></li>
+    <li><a href="#demo">2. Demo</a></li>
+    <li><a href="#features">3. Features</a></li>
+    <li><a href="#requirements">3. Requirements</a></li>
+    <li><a href="#other">5. Others</a></li>
+</ol>
+<div id="main">
+    <div id="content">
+        <h1>SQLite Web Master Documentation</h1>
+        <div id="instruction">
+            <h2>1. Instruction</h2>
+            <p>
+                SQLite Web Master is a full-featured database management system for 
+                SQLite 3.X. It's web-based, so you can manage your databases from anywhere.
+                It's powerful and easy to use. You can use it to manage multiple databases,
+                design schemas, edit contents.
+            </p>
+        </div>
+        <div id="demo">
+            <h2>2. Demo</h2>
+            <p>The demo is readonly. You can view schemas, contents.</p>
+            <p><a href="http://www.craph.com/demos/sqlite/">http://www.craph.com/demos/sqlite/</a></p>
+            <p>
+                username: admin <br/>
+                password: admin
+            </p>
+        </div>
+        <div id="features">
+            <h2>3. Features</h2>
+            <ul>
+                <li><strong>Manage Databases</strong>
+                    <ul>
+                        <li>You can manage database files and database groups.</li>
+                        <li>You can manage database settings(pragmas) easily.</li>
+                        <li>You can vacuum and download database files if you need.</li>
+                    </ul>
+                </li>
+                <li><strong>Design Schemas</strong>
+                    <ul>
+                        <li><strong>Design Tables</strong>
+                            <ul>
+                                <li>You can add/change/remove columns</li>
+                                <li>You can even reorder columns.</li>
+                                <li>You can add/change/remove any constraint(foreign key/combined unique/check).</li>
+                                <li>You can add/change/remove indices of a table</li>
+                                <li>You can add/change/remove triggers</li>
+                                
+                                <li>And all of these are using the visual editor. And SQL statements are highlighted.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Design Views</strong>
+                            <ul>
+                                <li>You can add/change/remove views</li>
+                                <li>You can add/change/remove triggers of a view.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><strong>Manage Tables</strong>
+                    <ul>
+                        <li>You can rename/empty/reindex/drop a table.</li>
+                        <li>You can move/copy any table to any database file</li>
+                        <li>You can populate a table with mock data with a powerful tool.</li>
+                    </ul>
+                </li>
+                <li><strong>Manage contents.</strong>
+                    <ul>
+                        <li>You can filter contents easily.</li>
+                        <li>You can use the inline editor to edit a field on the content list page.</li>
+                        <li>You can sort contents by any column.</li>
+                        <li>You can view BLOB field as an image on the content list page.</li>
+                        <li>You can edit content and even change data type. </li>
+                        <li>You can edit BLOB field as you want.</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Import/Export Contents and Schemas.</strong>
+                    <ul>
+                        <li><strong>Import</strong>
+                            <ul>
+                                <li>You can import data from a file: xml - csv - sql (- mdb - xls, under windows platform).</li>
+                                <li>You can import data into a table or create a new one.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Export</strong>
+                            <ul>
+                                <li>You can export data to: xml - csv - sql </li>
+                                <li>You can use custom SQL to export data to csv format.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><strong>Run SQL Commands</strong>
+                    <ul>
+                        <li>You can use snippets.</li>
+                        <li>You can edit the snippet file, add your snippets.</li>
+                        <li>The command is highlighted.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="requirements">
+            <h2>4. Requirements</h2>
+            <ol>
+                <li>You need a web server (such as Apache, IIS, Nginx...) to host this application.</li>
+                <li>And PHP version is <strong>5.3.3 or higher</strong>, with <strong>sqlite3</strong> extension.
+                    When you use import/export, <strong>xmlreader/xmlwriter</strong>, <strong>iconv</strong> extensions are needed.
+                </li>
+                <li>If you want to import MDB/XLS files:
+                    <ol>
+                        <li>The application must run under <strong>MS Windows XP (or later)</strong> Platform.</li>
+                        <li>The PHP extension <strong>com_dotnet</strong> must be loaded.</li>
+                        <li><strong>MADE</strong> must be installed. ( http://www.microsoft.com/en-us/download/details.aspx?id=13255 )</li>
+                    </ol>
+                </li>
+                <li>To access this application you need a web browser with cookies and javascript enabled.</li>
+            </ol>
+        </div>
+        <div id="others">
+            <h2>5. Others</h2>
+            <p>If you have any problem, or suggestion. Please feel free to contact me.</p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+    $items = $('#content > div');
+    function set_active(){
+        for(var i=0; i<$items.length; i++){
+            var $item = $($items[i]);
+            var diff = $item.offset().top - $(window).scrollTop();
+            if( diff < 40 && diff > 0){
+                var id = $item.attr('id');
+                $('#sidebar a').removeClass('active');
+                $('#sidebar a[href="#'+id+'"]').addClass('active');
+                break;
+            }
+        }
+    }
+    set_active();
+    $(window).scroll(function(){
+        set_active();
+    });
+    
+    $('#sidebar').on('click', 'a', function(){
+        $item = $('#content '+ $(this).attr('href'));
+        $(window).scrollTop($item.offset().top - 10);
+        return false;
+    });
+});
+</script>
+</body>
+</html>

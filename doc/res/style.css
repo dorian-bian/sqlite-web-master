@@ -1,0 +1,103 @@
+#main h1 {
+    color: #666;
+    text-align:center;
+    background-color:#EEE;
+    font-family: serif;
+    font-weight:bold;
+    font-size: 32px;
+    padding: 18px;
+}
+
+h2 { 
+    font-size:larger; 
+    font-weight:bold; 
+    color:#333; 
+    text-shadow: 1px 1px 1px #FFF; 
+}
+
+pre {
+    width: 580px;
+    padding: 10px;
+    background-color: #FFF;
+    border:dotted 1px #CCC;
+}
+
+var, em {
+    font-style:italic;
+    font-weight: bold;
+}
+
+strong { 
+    font-weight: bold;
+}
+#sidebar {
+    width:200px;
+    position:fixed;
+    top: 30px;
+    left: 10px;
+}
+
+#sidebar li:target {
+    background-color:#EEE;
+}
+
+#topbar { 
+    position: fixed; 
+    left:0; right:0; 
+    top:0; z-index: 10; 
+}
+
+#main {
+    top: 30px;
+    margin-top: 30px;
+    margin-left: 240px;
+    
+    font-size: 14px;
+    line-height: 24px;
+}
+
+#main #content {
+    padding: 24px;
+}
+
+#content > div > h2 {
+    padding-top:30px;
+}
+
+#content ul, #content ol {
+    margin-left: 8px;
+}
+
+#content ol > li, #content ul > li {
+    display: list-item;
+    list-style-type: circle;
+    margin-left: 20px;
+}
+
+#content ol > li {
+    list-style-type: decimal;
+}
+
+#content img {
+    margin-top: 4px;
+}
+
+div.tips-important {
+    margin: 8px 8px 8px 0;
+    color: #660000;
+    padding: 16px;
+    background-color: #FFF6F6;
+    border:dotted 1px #CCC;
+}
+
+div.tips {
+    margin: 8px 8px 8px 0;
+    color: #004200;
+    padding: 16px;
+    background-color: #F6FFF6;
+    border:dotted 1px #CCC;
+}
+
+div.tips p {
+    padding: 3px 8px;
+}

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>SQLite Web Master Documentation</title>
+    <link rel="stylesheet" href="../res/modern.css" />
+    <link rel="stylesheet" href="res/style.css" />
+    <script type="text/javascript" src="../res/jquery.min.js"></script>
+</head>
+<body>
+<div id="topbar">
+    <span>SQLite Web Master Documentation</span>
+</div>
+<ol id="sidebar">
+    <li><a href="#instruction">1. Instruction</a></li>
+    <li><a href="#features">2. Features</a></li>
+    <li><a href="#requirements">3. Requirements</a></li>
+    <li><a href="#installation">4. Installation</a></li>
+    <li><a href="#config">5. Configuations</a></li>
+    <li><a href="#support">6. Support &amp; Feedback</a></li>
+    <li><a href="#other">7. Other Licenses</a></li>
+</ol>
+<div id="main">
+    <div id="content">
+        <h1>SQLite Web Master Documentation</h1>
+        <div id="instruction">
+            <h2>1. Instruction</h2>
+            <p>
+                SQLite Web Master is a full-featured database management system for 
+                SQLite 3.X. It's web-based, so you can manage your databases from anywhere.
+                It's powerful and easy to use. You can use it to manage multiple databases,
+                design schemas, edit contents.
+            </p>
+        </div>
+        <div id="features">
+            <h2>2. Features</h2>
+            <ul>
+                <li><strong>Manage Databases:</strong> create/delete/vacuum/download.</li>
+                <li><strong>Design Schemas:</strong> table/view/index/trigger.</li>
+                <li><strong>Manage Tables: </strong> rename/copy/move/empty/populate.</li>
+                <li><strong>Manage contents: </strong>list/filter/insert/update/delete.</li>
+                <li><strong>Import/Export Schema/Contents:</strong> sql/xml/csv</li>
+                <li><strong>Run SQL Commands:</strong>the command is highlight.</li>
+            </ul>
+        </div>
+        <div id="requirements">
+            <h2>3. Requirements</h2>
+            <ol>
+                <li>You need a web server (such as Apache, IIS, Nginx...) to host this application.</li>
+                <li>And PHP version is <strong>5.3.3 or higher</strong>, with <strong>sqlite3</strong> extension.
+                    When you use import/export, <strong>xmlreader/xmlwriter</strong>, <strong>iconv</strong> extensions are needed.
+                </li>
+                <li>If you want to import MDB/XLS files:
+                    <ol>
+                        <li>The application must run under <strong>MS Windows XP (or later)</strong> Platform.</li>
+                        <li>The PHP extension <strong>com_dotnet</strong> must be loaded.</li>
+                        <li><strong>MADE</strong> must be installed. ( http://www.microsoft.com/en-us/download/details.aspx?id=13255 )</li>
+                    </ol>
+                </li>
+                <li>To access this application you need a web browser with cookies and javascript enabled.</li>
+            </ol>
+        </div>
+        <div id="installation">
+            <h2>4. Installation</h2>
+            <ol>
+                <li><strong>Upload</strong>
+                    <p>
+                        Upload all files to your web server.
+                        For example, upload to <em>http://www.yourwebsite.com/swm/</em>.
+                        Maybe you need an FTP software to do that.
+                    </p>
+                </li>
+                <li>
+                    <strong>Log in and Try</strong>
+                    <p>
+                        Use your browser to open <em>http://www.yourwebsite.com/swm/</em>. You will see this: <br/>
+                        <img src="res/login.png" alt="login.png" />
+                    </p>
+                    <p>
+                        * The default username is <strong>admin</strong>, and the password is <strong>admin</strong>.
+                    </p>
+                    <p>
+                        * If you checked the <strong>Remember Me</strong>. The system will remember you for a week since your
+                        last time used it.
+                    </p>
+                    <p>
+                        * Now log in and try to use it.
+                    </p>
+                </li>
+                <li><strong>Change Password</strong>
+                    <ol>
+                        <li> Use your browser to open <em>http://www.yourwebsite.com/swm/index.php?i=pass</em>. <br/>
+                            <img src="res/pass.png" alt="pass.png" />
+                        </li>
+                        <li>
+                            Input your username and password, click <em>Generate</em>. Copy the three line codes.
+                        </li>
+                        <li>Open the config file <em>etc/config.php</em> in the application directory on the server.
+                            <div class="tips">
+                                <p>* You can download the remote <em>config.php</em> to local. edit it and upload it to override the old one.</p>
+                                <p>* Or you can edit remote <em>config.php</em> by FTP software or others. </p>
+                            </div>
+                        </li>
+                        <li>Replace the following codes with your copied one.<br/>
+                            <pre><code>/**********************************************************************/
+/** user/pass config:  use 'index.php?i=pass' to generate it */
+define('SEC_USER', 'admin');
+define('SEC_SALT', '13D54C5D');
+define('SEC_PASS', '9745c76f7cc303ddde38909a09894e4b');
+/**********************************************************************/</code></pre>
+                        </li>
+                        <li>Now test it. Use your browser to open <em>http://www.yourwebsite.com/swm/index.php</em></li>
+                    </ol>
+                </li>
+                <li>
+                    <strong>Configure Databases</strong>
+                    <ol>
+                        <li>Open the config file <em>etc/config.php</em> in the application directory on the server.
+                            <div class="tips">
+                                <p>* You can download the remote <em>config.php</em> to local. Edit it and upload it to override the old one.</p>
+                                <p>* Or you can edit remote <em>config.php</em> by FTP software or others. </p>
+                            </div>
+                            <p>Find this part:</p>
+                            <pre><code>/**********************************************************************/
+/** For security reason, the database directories/files should NOT be 
+    accessible from url directly. */
+$_DATABASES = array(
+    'demo' => array('path' => P_PATH.'/srv/demo.sqlite'),
+);
+
+/** The databases in these directories are manageable. */
+$_DB_GROUPS = array(
+   # 'managed' => array('path'=> P_PATH.'/opt/', 'tail'=>'.sqlite'),
+);
+/**********************************************************************/</code></pre>
+                            <p>
+                                * The <var>$_DATABASES</var> can have multiple items. Each has a unique name, a path.
+                                The <var>path</var> point to a file.
+                                If the database needs a username, password or extensions, the item should like this: <br/>
+                            </p>
+                            <div class="tips">
+                                <p>If the file doesn't exist, it will create it as a new database.</p>
+                            </div>
+                            <pre><code>    ...
+    'demo' => array(
+        'path' => P_PATH.'/srv/demo.sqlite',
+        'user'=>'username', 
+        'pass'=>'password', 
+        'exts'=>array('exts/xxx.so')
+    ),
+    ...</code></pre><br/>
+                            <p>
+                                * The <var>$_DB_GROUPS</var> can have multiple items too. Each has a unique name, a path.
+                                The <var>path</var> point to a directory, not a file. The <var>tail</var> is the extension name of a
+                                database file.
+                                If the database needs a username, password or extensions, the item should like this: 
+                            </p>
+                            <pre><code>    ...
+    'managed' => array(
+        'path' => P_PATH.'/opt/',
+        'user'=>'username', 
+        'pass'=>'password', 
+        'exts'=>array('exts/xxx.so')
+    ),
+    ...</code></pre>
+                            
+                            <div class="tips-important">
+                                <strong>Important:</strong>
+                                All encryption features will be enabled only if the SQLite encryption module is installed.
+                            </div>
+                        </li>
+                        
+                        <li>
+                            Now you can test it.
+                        </li>
+                    </ol>
+                </li>
+                <li><strong>Security</strong>
+                    <div class="tips-important">
+                        <p><strong>If the application uploads to a public site:</strong> </p>
+                        <ul>
+                            <li>
+                                The <em>user/password</em> better complicates enough (length > 8, with letters, numbers and symbols).</li>
+                            <li> 
+                                The database directories/files should NOT be accessed from url directly. For example: <br/>
+                                If you put this application in <em>.../www/swm/</em>.
+                                The database's path should not be <em>.../www/swm/data/data.sqlite</em>. Otherwise, your data.sqlite may be
+                                downloaded by others from <em>http://www.yourwebsite.com/swm/data/data.sqlite</em>.
+                            </li>
+                            <li>
+                                All the files should be readonly except <em>tmp/</em>.
+                            </li>
+                            <li>
+                                If your computer may be used by someone who you don't trust. You should NOT check <em>Remember Me</em> when
+                                you log into the system. 
+                            </li>
+                            <li>
+                                Backup your files regularly for whatever reasons.
+                            </li>
+                            <li>
+                                Follow security recommendations for PHP and your web-server.
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <div id="config">
+            <h2>5. Configuration</h2>
+            <ul>
+                <li><strong>etc/config.php</strong>
+                    <ul>
+                        <li><strong>P_PATH:</strong> This constant defines the physical path of the application.</li>
+                        <li><strong>P_TEMP:</strong> This constant defines the temporary directory. MUST be writable.</li>
+                        <li><strong>V_PATH:</strong> This constant defines the virtual path of the application.</li>
+                        <li><strong>THEME:</strong> This constant defines the theme. It's the name of a css file in <var>res/</var>. Another is <var>"main"</var> </li>
+                        <li><strong>DEBUG:</strong> If the value is TRUE, when some error occurs, you'll see the backtrace information.</li>
+                        <li><strong>CONTENT_TEXT_SIZE:</strong> This constant defines the max length of a field in content list.</li>
+                        <li><strong>CONTENT_PAGE_SIZE:</strong> This constant defines the max items in content list.</li>
+                        <li>
+                            <strong>TEMPLATE_MODE:</strong>This constant has three value:
+                            <ol>
+                                <li>0: The template engine will use BUILD method to render output.</li>
+                                <li>1: The template engine will use COMPILE method to render output(a little faster). The compiled file will cache in P_TEMP folder.</li>
+                                <li>2: The template engine will return all marks the page used instead of the real content.</li>
+                            </ol>
+                        </li>
+                        <li><strong>IMPORT_STRICT_MODE</strong> If the value is TRUE, you can import data from physical path (on the server).</li>
+                        <li><strong>SEC_PATH:</strong> If the value is TRUE, the system will add sec-token to the url.</li>
+                        <li><strong>SEC_LAST:</strong> This constant defines the max seconds the system will remember you since you last time used it.</li>
+                        <li><strong>SEC_USER:</strong>, <strong>SEC_SALT:</strong> and <strong>SEC_PASS:</strong>
+                            These three constants define the user token. You must generate them by <em>index.php?i=pass</em>.
+                        </li>
+                        <li><strong>$_DATABASES:</strong>
+                            This variable defines the database files you use in the system. At least has one item. Important:
+                            <ul>
+                                <li>If the file does not exist, the system will create it as new database.</li>
+                                <li>The folder of the file must exist and be writable.</li>
+                            </ul>
+                            <pre><code>$_DATABASES = array(
+    'database1' => array('path' => P_PATH.'/srv/data1.sqlite'),
+    'database2' => array('path' => P_PATH.'/srv/data2.sqlite'),
+    ...
+);</code></pre>
+                        </li>
+                        <li><strong>$_DB_GROUPS:</strong>
+                            This variable defines the database groups you want to manage in the system. You can add/delete database files.
+                            And you can have multiple groups.
+                            <pre><code>$_DB_GROUPS = array(
+    'managed1' => array('path'=> P_PATH.'/opt1/', 'tail'=>'.sqlite'),
+    'managed2' => array('path'=> P_PATH.'/opt2/', 'tail'=>'.sqlite'),
+    ...
+);</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li><strong>etc/snippets.php</strong>
+                    <p>This file defined the snippets in <strong>Run SQL</strong>.</p>
+                </li>
+                <li><strong>etc/encodings.php</strong>
+                    <p>This file defined the encodings used by  <strong>Export</strong> and <strong>Import</strong>.</p>
+                </li>
+            </ul>
+            
+        </div>
+        <div id="support">
+            <h2>6. Support &amp; Feedback</h2>
+            <p>If you have any problem, or suggestion. Please feel free to contact me.</p>
+            <pre><code><a href="http://codecanyon.net/user/bian_yueting">Bian Yueting &lt;http://codecanyon.net/user/bian_yueting&gt;</a></code></pre>
+            
+        </div>
+        <div id="other">
+            <h2>7. Other Licenses</h2>
+            <ul>
+                <li>Glyphicons Free Icons
+                    <ul>
+                        <li>website: http://glyphicons.com/</li>
+                        <li>license: CC BY 3.0 (http://creativecommons.org/licenses/by/3.0/)</li>
+                    </ul>
+                </li>
+                <li>Codemirror
+                    <ul>
+                        <li>website: http://codemirror.net/</li>
+                        <li>license: MIT-style (http://codemirror.net/LICENSE)</li>
+                    </ul>
+                </li>
+                <li>JQuery
+                    <ul>
+                        <li>website: http://www.jquery.com/</li>
+                        <li>license: MIT-LICENSE (http://en.wikipedia.org/wiki/MIT_License)</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <p>SQLite Web Master</p>
+</div>
+<script type="text/javascript">
+$(function(){
+    $items = $('#content > div');
+    function set_active(){
+        for(var i=0; i<$items.length; i++){
+            var $item = $($items[i]);
+            var diff = $item.offset().top - $(window).scrollTop();
+            if( diff < 40 && diff > -10){
+                var id = $item.attr('id');
+                $('#sidebar a').removeClass('active');
+                $('#sidebar a[href="#'+id+'"]').addClass('active');
+                break;
+            }
+        }
+    }
+    set_active();
+    $(window).scroll(function(){
+        set_active();
+    });
+    
+    $('#sidebar').on('click', 'a', function(){
+        $item = $('#content '+ $(this).attr('href'));
+        $('#sidebar a').removeClass('active');
+        $(this).addClass('active');
+    });
+});
+</script>
+</body>
+</html>
