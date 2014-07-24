@@ -104,9 +104,8 @@ class m_content_list extends m_base {
         $order_dir = isset($_GET['order-dir']) ? $_GET['order-dir'] : 'DESC';
         
         try {
-            $order_key_q = Database::instance()->quote($order_key);
             $content_data = content_list(self::$source['name'], '_rowid_ as rowid, *',$filter_text, 
-                "$order_key_q $order_dir", NULL, CONTENT_PAGE_SIZE, $page);
+                "[$order_key] $order_dir", NULL, CONTENT_PAGE_SIZE, $page);
                 
             $count = content_count(self::$source['name'], $filter_text, NULL);
             $pagination = build_pagination($page, ceil($count/CONTENT_PAGE_SIZE), '%d','1');
